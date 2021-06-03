@@ -1,0 +1,15 @@
+
+/* Class = "NSMenuItem"; title = "CustomView"; ObjectID = "5at-fu-1VY"; */
+"5at-fu-1VY.title" = "CustomView";
+
+/* Class = "NSMenuItem"; title = "Rotate Screen CCW"; ObjectID = "HGT-M3-AkY"; */
+"HGT-M3-AkY.title" = "反時計回りに回転";
+
+/* Class = "NSMenuItem"; title = "Open at Login"; ObjectID = "Udh-IQ-PAE"; */
+"Udh-IQ-PAE.title" = "ログイン時に開く";
+
+/* Class = "NSMenuItem"; title = "Rotate Screen CW"; ObjectID = "X3L-Dg-MFP"; */
+"X3L-Dg-MFP.title" = "時計回りに回転";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "tcE-dj-rCt"; */
+"tcE-dj-rCt.title" = "終了";”

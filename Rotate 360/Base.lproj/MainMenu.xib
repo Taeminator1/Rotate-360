@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="0MQ-o0-XMU" id="dLF-vU-f2v"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="0MQ-o0-XMU" customClass="AppDelegate" customModule="Rotate_360" customModuleProvider="target">
+            <connections>
+                <outlet property="customView" destination="eYm-eY-Ydg" id="g6K-nI-wxc"/>
+                <outlet property="menu" destination="hBL-aL-l1D" id="fqG-Qc-GCm"/>
+                <outlet property="openAtLoginMenuItem" destination="Udh-IQ-PAE" id="bAu-2z-y7f"/>
+                <outlet property="openAtLoginState" destination="Udh-IQ-PAE" id="5O6-WR-QvV"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu id="hBL-aL-l1D">
+            <items>
+                <menuItem title="Rotate Screen CW" id="X3L-Dg-MFP">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="rotateScreenClockwiseClicked:" target="0MQ-o0-XMU" id="t8l-kl-hJP"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Rotate Screen CCW" id="HGT-M3-AkY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="rotateScreenCounterclockwiseClicked:" target="0MQ-o0-XMU" id="9Gn-9o-CZL"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Nqq-GT-W3n"/>
+                <menuItem title="CustomView" id="5at-fu-1VY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="customViewClicked:" target="0MQ-o0-XMU" id="InL-DW-qen"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="5lR-e6-Qkh"/>
+                <menuItem title="Open at Login" id="Udh-IQ-PAE">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openAtLoginClicked:" target="0MQ-o0-XMU" id="7WY-YO-xcK"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" keyEquivalent="q" id="tcE-dj-rCt">
+                    <connections>
+                        <action selector="quitClicked:" target="0MQ-o0-XMU" id="Hau-bc-hH6"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="53" y="32"/>
+        </menu>
+        <customView id="eYm-eY-Ydg" customClass="CustomView" customModule="Rotate_360" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="180"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <point key="canvasLocation" x="141" y="266"/>
+        </customView>
+    </objects>
+</document>

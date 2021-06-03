@@ -7,24 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3475F377249A3D66007AABD1 /* Rotate 360 Launch.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34D55B98249A37DB0086E8D9 /* Rotate 360 Launch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3483792B2498CE360052C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483792A2498CE360052C2B5 /* AppDelegate.swift */; };
-		3483792D2498CE360052C2B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483792C2498CE360052C2B5 /* ViewController.swift */; };
 		3483792F2498CE380052C2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3483792E2498CE380052C2B5 /* Assets.xcassets */; };
-		348379322498CE380052C2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348379302498CE380052C2B5 /* Main.storyboard */; };
+		3483793F2498E8760052C2B5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483793E2498E8760052C2B5 /* CustomView.swift */; };
+		348379422498F1570052C2B5 /* RotateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348379412498F1570052C2B5 /* RotateScreen.swift */; };
+		34ABFEE9249B7ECC0013C42C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34ABFEEB249B7ECC0013C42C /* MainMenu.xib */; };
+		34D55B9B249A37DB0086E8D9 /* LaunchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D55B9A249A37DB0086E8D9 /* LaunchAppDelegate.swift */; };
+		34D55B9F249A37DC0086E8D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D55B9E249A37DC0086E8D9 /* Assets.xcassets */; };
+		34D55BA2249A37DC0086E8D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D55BA0249A37DC0086E8D9 /* Main.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3475F376249A3D3A007AABD1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				3475F377249A3D66007AABD1 /* Rotate 360 Launch.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		348379272498CE360052C2B5 /* Rotate 360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotate 360.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3483792A2498CE360052C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3483792C2498CE360052C2B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3483792E2498CE380052C2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		348379312498CE380052C2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		348379332498CE380052C2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		348379342498CE380052C2B5 /* Rotate_360.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rotate_360.entitlements; sourceTree = "<group>"; };
+		3483793E2498E8760052C2B5 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		348379412498F1570052C2B5 /* RotateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotateScreen.swift; sourceTree = "<group>"; };
+		348379442498F37D0052C2B5 /* Rotate 360-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rotate 360-Bridging-Header.h"; sourceTree = "<group>"; };
+		34ABFEEA249B7ECC0013C42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		34ABFEEC249B7ED70013C42C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		34ABFEED249B7EDF0013C42C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		34D55B98249A37DB0086E8D9 /* Rotate 360 Launch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotate 360 Launch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		34D55B9A249A37DB0086E8D9 /* LaunchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAppDelegate.swift; sourceTree = "<group>"; };
+		34D55B9E249A37DC0086E8D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		34D55BA1249A37DC0086E8D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		34D55BA3249A37DC0086E8D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34D55BA4249A37DC0086E8D9 /* Rotate_360_Launch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rotate_360_Launch.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		348379242498CE360052C2B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34D55B95249A37DB0086E8D9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				348379292498CE360052C2B5 /* Rotate 360 */,
+				34D55B99249A37DB0086E8D9 /* Rotate 360 Launch */,
 				348379282498CE360052C2B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				348379272498CE360052C2B5 /* Rotate 360.app */,
+				34D55B98249A37DB0086E8D9 /* Rotate 360 Launch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,14 +90,28 @@
 		348379292498CE360052C2B5 /* Rotate 360 */ = {
 			isa = PBXGroup;
 			children = (
+				34ABFEEB249B7ECC0013C42C /* MainMenu.xib */,
 				3483792A2498CE360052C2B5 /* AppDelegate.swift */,
-				3483792C2498CE360052C2B5 /* ViewController.swift */,
+				348379412498F1570052C2B5 /* RotateScreen.swift */,
+				3483793E2498E8760052C2B5 /* CustomView.swift */,
 				3483792E2498CE380052C2B5 /* Assets.xcassets */,
-				348379302498CE380052C2B5 /* Main.storyboard */,
 				348379332498CE380052C2B5 /* Info.plist */,
 				348379342498CE380052C2B5 /* Rotate_360.entitlements */,
+				348379442498F37D0052C2B5 /* Rotate 360-Bridging-Header.h */,
 			);
 			path = "Rotate 360";
+			sourceTree = "<group>";
+		};
+		34D55B99249A37DB0086E8D9 /* Rotate 360 Launch */ = {
+			isa = PBXGroup;
+			children = (
+				34D55B9A249A37DB0086E8D9 /* LaunchAppDelegate.swift */,
+				34D55B9E249A37DC0086E8D9 /* Assets.xcassets */,
+				34D55BA0249A37DC0086E8D9 /* Main.storyboard */,
+				34D55BA3249A37DC0086E8D9 /* Info.plist */,
+				34D55BA4249A37DC0086E8D9 /* Rotate_360_Launch.entitlements */,
+			);
+			path = "Rotate 360 Launch";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,6 +124,7 @@
 				348379232498CE360052C2B5 /* Sources */,
 				348379242498CE360052C2B5 /* Frameworks */,
 				348379252498CE360052C2B5 /* Resources */,
+				3475F376249A3D3A007AABD1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -81,6 +133,23 @@
 			name = "Rotate 360";
 			productName = "Rotate 360";
 			productReference = 348379272498CE360052C2B5 /* Rotate 360.app */;
+			productType = "com.apple.product-type.application";
+		};
+		34D55B97249A37DB0086E8D9 /* Rotate 360 Launch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34D55BA5249A37DC0086E8D9 /* Build configuration list for PBXNativeTarget "Rotate 360 Launch" */;
+			buildPhases = (
+				34D55B94249A37DB0086E8D9 /* Sources */,
+				34D55B95249A37DB0086E8D9 /* Frameworks */,
+				34D55B96249A37DB0086E8D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rotate 360 Launch";
+			productName = "Rotate 360 Launch";
+			productReference = 34D55B98249A37DB0086E8D9 /* Rotate 360 Launch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -95,6 +164,10 @@
 				TargetAttributes = {
 					348379262498CE360052C2B5 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
+					};
+					34D55B97249A37DB0086E8D9 = {
+						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
@@ -105,6 +178,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				ja,
 			);
 			mainGroup = 3483791E2498CE360052C2B5;
 			productRefGroup = 348379282498CE360052C2B5 /* Products */;
@@ -112,6 +187,7 @@
 			projectRoot = "";
 			targets = (
 				348379262498CE360052C2B5 /* Rotate 360 */,
+				34D55B97249A37DB0086E8D9 /* Rotate 360 Launch */,
 			);
 		};
 /* End PBXProject section */
@@ -122,7 +198,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3483792F2498CE380052C2B5 /* Assets.xcassets in Resources */,
-				348379322498CE380052C2B5 /* Main.storyboard in Resources */,
+				34ABFEE9249B7ECC0013C42C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34D55B96249A37DB0086E8D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34D55B9F249A37DC0086E8D9 /* Assets.xcassets in Resources */,
+				34D55BA2249A37DC0086E8D9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,18 +218,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3483792D2498CE360052C2B5 /* ViewController.swift in Sources */,
 				3483792B2498CE360052C2B5 /* AppDelegate.swift in Sources */,
+				348379422498F1570052C2B5 /* RotateScreen.swift in Sources */,
+				3483793F2498E8760052C2B5 /* CustomView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34D55B94249A37DB0086E8D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34D55B9B249A37DB0086E8D9 /* LaunchAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		348379302498CE380052C2B5 /* Main.storyboard */ = {
+		34ABFEEB249B7ECC0013C42C /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				348379312498CE380052C2B5 /* Base */,
+				34ABFEEA249B7ECC0013C42C /* Base */,
+				34ABFEEC249B7ED70013C42C /* ko */,
+				34ABFEED249B7EDF0013C42C /* ja */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		34D55BA0249A37DC0086E8D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34D55BA1249A37DC0086E8D9 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -156,6 +260,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -202,12 +307,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -216,6 +322,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -256,11 +363,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -269,9 +378,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rotate 360/Rotate_360.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = LGU69RG34G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Rotate 360/Info.plist";
@@ -279,8 +390,12 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Taeminator.Rotate-360";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Rotate 360/Rotate 360-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -289,9 +404,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rotate 360/Rotate_360.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = LGU69RG34G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Rotate 360/Info.plist";
@@ -299,8 +416,59 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Taeminator.Rotate-360";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Rotate 360/Rotate 360-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		34D55BA6249A37DC0086E8D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Rotate 360 Launch/Rotate_360_Launch.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LGU69RG34G;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Rotate 360 Launch/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Taeminator.Rotate-360-Launch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		34D55BA7249A37DC0086E8D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Rotate 360 Launch/Rotate_360_Launch.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LGU69RG34G;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Rotate 360 Launch/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Taeminator.Rotate-360-Launch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -322,6 +490,15 @@
 			buildConfigurations = (
 				348379382498CE380052C2B5 /* Debug */,
 				348379392498CE380052C2B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34D55BA5249A37DC0086E8D9 /* Build configuration list for PBXNativeTarget "Rotate 360 Launch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34D55BA6249A37DC0086E8D9 /* Debug */,
+				34D55BA7249A37DC0086E8D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
