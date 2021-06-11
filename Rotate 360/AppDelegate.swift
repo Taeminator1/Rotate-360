@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if CustomView.selectedScreen == -1 {
         }
         else {
-            RotateScreen.personalRotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, Orientation: 1)
+            Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, Orientation: 1)
         }
     }
     
@@ -90,7 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if CustomView.selectedScreen == -1 {
         }
         else {
-            RotateScreen.personalRotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, Orientation: 2)
+            Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, Orientation: 2)
         }
     }
     
