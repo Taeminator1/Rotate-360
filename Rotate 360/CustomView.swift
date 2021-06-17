@@ -10,18 +10,11 @@ import Cocoa
 
 @IBDesignable
 class CustomView: NSView {
-    
     var mouseLocation: NSPoint { NSEvent.mouseLocation }
     
     var buttons = [NSButton]()
-    var button = NSButton()
     
-    var minX: CGFloat = 0
-    var minY: CGFloat = 0
-    var maxX: CGFloat = 0
-    var maxY: CGFloat = 0               // for x, y coordinates to include conneted screens
-    var lengthX: CGFloat = 0
-    var lengthY: CGFloat = 0            // size of region wehre there are screens
+    var edges: [CGFloat] = []
     
     let margin: CGFloat = 20.0          // Margin between window and menu item
 //    let lineWidth: CGFloat = 1.0
@@ -68,24 +61,27 @@ class CustomView: NSView {
     }
     
     
+    func initializeProperties() {
+        width = 360; height = 160
+        scale = 0
+    }
     
     func makeCustomButtons() {
         
-        minX = 0; minY = 0; maxX = 0; maxY = 0;
-        lengthX = 0; lengthY = 0
-        
-        width = 360; height = 160
-        
-        scale = 0
+        initializeProperties()
+        var region = Region()
         
         let screens: [NSScreen] = NSScreen.screens
         
+        var lengthX: CGFloat = 0
+        var lengthY: CGFloat = 0        // size of region wehre there are screens
+        
         // decide region for connected screens`
         for i in 0 ..< screens.count {
-            if screens[i].frame.minX < minX { minX = screens[i].frame.minX }
-            if screens[i].frame.minY < minY { minY = screens[i].frame.minY }
-            if screens[i].frame.maxX > maxX { maxX = screens[i].frame.maxX }
-            if screens[i].frame.maxY > maxY { maxY = screens[i].frame.maxY }
+            if screens[i].frame.minX < region.minX { region.minX = screens[i].frame.minX }
+            if screens[i].frame.minY < region.minY { region.minY = screens[i].frame.minY }
+            if screens[i].frame.maxX > region.maxX { region.maxX = screens[i].frame.maxX }
+            if screens[i].frame.maxY > region.maxY { region.maxY = screens[i].frame.maxY }
             
             lengthX += screens[i].frame.maxX - screens[i].frame.minX
             lengthY += screens[i].frame.maxY - screens[i].frame.minY
@@ -96,12 +92,11 @@ class CustomView: NSView {
         height += margin
         
         for i in 0 ..< screens.count {
-            button = NSButton(frame: NSRect(
-                x: (screens[i].frame.minX - minX)/scale + (width-(maxX-minX)/scale)/2,
-                y: (screens[i].frame.minY - minY)/scale + (height-(maxY-minY)/scale)/2,
+            let button = NSButton(frame: NSRect(
+                                    x: (screens[i].frame.minX - region.minX)/scale + (width-(region.maxX-region.minX)/scale)/2,
+                                    y: (screens[i].frame.minY - region.minY)/scale + (height-(region.maxY-region.minY)/scale)/2,
                 width: screens[i].frame.size.width/scale,
                 height: screens[i].frame.size.height/scale))
-            button.title =  "button[\(i)]"
             button.bezelStyle = NSButton.BezelStyle.smallSquare
             
             if AppDelegate.internalDisplayOrder != i {      // for not internal display
@@ -118,19 +113,11 @@ class CustomView: NSView {
                 button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
                 button.isEnabled = false
             }
-            
-            // Things to do: give name to the button of the screen
-//            button.title = "Screen Name"
 
             addSubview(button)
             button.target = self
             button.action = #selector(buttonClicked)
             buttons.append(button)
-            
-//            if AppDelegate.internalDisplayOrder == i {
-////                button.title = "Internal Display"
-//                button.isEnabled = false
-//            }
         }
     }
 
@@ -150,7 +137,6 @@ class CustomView: NSView {
                     buttons[i].image = NSImage.swatchWithColor(color: NSColor.enabledScreen, size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
                     
                     CustomView.selectedScreen = i
-    //                print("Button[\(i)] is clicked.")
                 }
                 else {
                     buttons[i].image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
