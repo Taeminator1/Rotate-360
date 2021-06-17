@@ -106,16 +106,16 @@ class CustomView: NSView {
             
             if AppDelegate.internalDisplayOrder != i {      // for not internal display
                 if mouseLocation.x >= screens[i].frame.minX && mouseLocation.x <= screens[i].frame.maxX && mouseLocation.y >= screens[i].frame.minY && mouseLocation.y <= screens[i].frame.maxY {
-                    button.image = NSImage.swatchWithColor(color: NSColor(red: 99/255, green: 157/255, blue: 214/255, alpha: 1.0), size: NSMakeSize(button.frame.size.width, button.frame.size.height))
+                    button.image = NSImage.swatchWithColor(color: NSColor.enabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
                     
                     CustomView.selectedScreen = i
                 }
                 else {
-                    button.image = NSImage.swatchWithColor(color: NSColor(red: 99/255, green: 99/255, blue: 99/255, alpha: 1.0), size: NSMakeSize(button.frame.size.width, button.frame.size.height))
+                    button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
                 }
             }
             else {                                          // for internal display
-                button.image = NSImage.swatchWithColor(color: NSColor(red: 99/255, green: 99/255, blue: 99/255, alpha: 1.0), size: NSMakeSize(button.frame.size.width, button.frame.size.height))
+                button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
                 button.isEnabled = false
             }
             
@@ -147,27 +147,15 @@ class CustomView: NSView {
             // don't need to care about internal display
             if AppDelegate.internalDisplayOrder != i {
                 if buttons[i].state == NSControl.StateValue.on {
-                    buttons[i].image = NSImage.swatchWithColor(color: NSColor(red: 99/255, green: 157/255, blue: 214/255, alpha: 1.0), size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
+                    buttons[i].image = NSImage.swatchWithColor(color: NSColor.enabledScreen, size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
                     
                     CustomView.selectedScreen = i
     //                print("Button[\(i)] is clicked.")
                 }
                 else {
-                    buttons[i].image = NSImage.swatchWithColor(color: NSColor(red: 99/255, green: 99/255, blue: 99/255, alpha: 1.0), size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
+                    buttons[i].image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
                 }
             }
         }
     }
-}
-
-extension NSImage {
-class func swatchWithColor(color: NSColor, size: NSSize) -> NSImage {
-    let image = NSImage(size: size)
-    
-    image.lockFocus()
-    color.drawSwatch(in: NSMakeRect(0, 0, size.width, size.height))
-    image.unlockFocus()
-    
-    return image
-   }
 }

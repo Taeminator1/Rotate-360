@@ -12,6 +12,8 @@
 		3483792F2498CE380052C2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3483792E2498CE380052C2B5 /* Assets.xcassets */; };
 		3483793F2498E8760052C2B5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483793E2498E8760052C2B5 /* CustomView.swift */; };
 		348379422498F1570052C2B5 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348379412498F1570052C2B5 /* Screen.swift */; };
+		34A45830267B8BBF00F72C6C /* NSImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A4582F267B8BBF00F72C6C /* NSImageExtension.swift */; };
+		34A45835267B8BD900F72C6C /* NSColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A45834267B8BD900F72C6C /* NSColorExtension.swift */; };
 		34ABFEE9249B7ECC0013C42C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34ABFEEB249B7ECC0013C42C /* MainMenu.xib */; };
 		34D55B9B249A37DB0086E8D9 /* LaunchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D55B9A249A37DB0086E8D9 /* LaunchAppDelegate.swift */; };
 		34D55B9F249A37DC0086E8D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D55B9E249A37DC0086E8D9 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		3483793E2498E8760052C2B5 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		348379412498F1570052C2B5 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		348379442498F37D0052C2B5 /* Rotate 360-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rotate 360-Bridging-Header.h"; sourceTree = "<group>"; };
+		34A4582F267B8BBF00F72C6C /* NSImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageExtension.swift; sourceTree = "<group>"; };
+		34A45834267B8BD900F72C6C /* NSColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorExtension.swift; sourceTree = "<group>"; };
 		34ABFEEA249B7ECC0013C42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		34ABFEEC249B7ED70013C42C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		34ABFEED249B7EDF0013C42C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		348379292498CE360052C2B5 /* Rotate 360 */ = {
 			isa = PBXGroup;
 			children = (
+				34A45833267B8BC100F72C6C /* Extension */,
 				34ABFEEB249B7ECC0013C42C /* MainMenu.xib */,
 				3483792A2498CE360052C2B5 /* AppDelegate.swift */,
 				348379412498F1570052C2B5 /* Screen.swift */,
@@ -100,6 +105,15 @@
 				348379442498F37D0052C2B5 /* Rotate 360-Bridging-Header.h */,
 			);
 			path = "Rotate 360";
+			sourceTree = "<group>";
+		};
+		34A45833267B8BC100F72C6C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				34A4582F267B8BBF00F72C6C /* NSImageExtension.swift */,
+				34A45834267B8BD900F72C6C /* NSColorExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		34D55B99249A37DB0086E8D9 /* Rotate 360 Launch */ = {
@@ -220,6 +234,8 @@
 			files = (
 				3483792B2498CE360052C2B5 /* AppDelegate.swift in Sources */,
 				348379422498F1570052C2B5 /* Screen.swift in Sources */,
+				34A45835267B8BD900F72C6C /* NSColorExtension.swift in Sources */,
+				34A45830267B8BBF00F72C6C /* NSImageExtension.swift in Sources */,
 				3483793F2498E8760052C2B5 /* CustomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
