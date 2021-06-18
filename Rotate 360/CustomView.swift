@@ -10,43 +10,21 @@ import Cocoa
 
 @IBDesignable
 class CustomView: NSView {
-    var mouseLocation: NSPoint { NSEvent.mouseLocation }
-    
-    var buttons = [NSButton]()
-    
-    var edges: [CGFloat] = []
-    
     let margin: CGFloat = 20.0          // Margin between window and menu item
-//    let lineWidth: CGFloat = 1.0
     
-    var width: CGFloat = 360
-    var height: CGFloat = 160           // Size of CustomView
-    
-    var scale: CGFloat = 0
-    
+    var mouseLocation: NSPoint { NSEvent.mouseLocation }
+    var buttons = [NSButton]()
     var drawKey: Bool = false           // make draw function excute only once
-    
+
     static var selectedScreen: Int = -1          // to know which button is selected
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame:frameRect);
-    }
 
     required init(coder: NSCoder) {
         super.init(coder: coder)!
-        
-//        print("required init method in CustomView")
-    }
-    
-    init(frame frameRect: NSRect, otherInfo:Int) {
-        super.init(frame:frameRect);
-        
+//        print("required init")
     }
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
-//        print("draw funtion in CustomView")
         
         if drawKey == false {
             drawKey = true
@@ -60,43 +38,28 @@ class CustomView: NSView {
         }
     }
     
-    
-    func initializeProperties() {
-        width = 360; height = 160
-        scale = 0
-    }
-    
     func makeCustomButtons() {
+        // View에 그릴 screen이 차지할 공간 결정
+        var viewWidth: CGFloat = self.bounds.width - margin             // 380 - 20 = 360
+        var viewHeight: CGFloat = self.bounds.height - margin           // 180 - 20 = 160
         
-        initializeProperties()
-        var region = Region()
-        
+        let region = Region()
         let screens: [NSScreen] = NSScreen.screens
         
-        var lengthX: CGFloat = 0
-        var lengthY: CGFloat = 0        // size of region wehre there are screens
+        screens.forEach { region.setProperties(screen: $0) }
         
-        // decide region for connected screens`
+        let scale = max(region.width / viewWidth, region.height / viewHeight)
+        viewWidth += margin
+        viewHeight += margin
+        
+        // View에 실제로 버튼 그리기
         for i in 0 ..< screens.count {
-            if screens[i].frame.minX < region.minX { region.minX = screens[i].frame.minX }
-            if screens[i].frame.minY < region.minY { region.minY = screens[i].frame.minY }
-            if screens[i].frame.maxX > region.maxX { region.maxX = screens[i].frame.maxX }
-            if screens[i].frame.maxY > region.maxY { region.maxY = screens[i].frame.maxY }
+            let x = (screens[i].frame.minX - region.minX) / scale + (viewWidth - (region.maxX - region.minX) / scale) / 2
+            let y = (screens[i].frame.minY - region.minY) / scale + (viewHeight - (region.maxY - region.minY) / scale) / 2
+            let w = screens[i].frame.size.width/scale
+            let h = screens[i].frame.size.height/scale
             
-            lengthX += screens[i].frame.maxX - screens[i].frame.minX
-            lengthY += screens[i].frame.maxY - screens[i].frame.minY
-        }
-        
-        scale = (lengthX / width) > (lengthY / height) ? (lengthX / width) : (lengthY / height)
-        width += margin
-        height += margin
-        
-        for i in 0 ..< screens.count {
-            let button = NSButton(frame: NSRect(
-                                    x: (screens[i].frame.minX - region.minX)/scale + (width-(region.maxX-region.minX)/scale)/2,
-                                    y: (screens[i].frame.minY - region.minY)/scale + (height-(region.maxY-region.minY)/scale)/2,
-                width: screens[i].frame.size.width/scale,
-                height: screens[i].frame.size.height/scale))
+            let button = NSButton(frame: NSRect(x: x, y: y, width: w, height: h))
             button.bezelStyle = NSButton.BezelStyle.smallSquare
             
             if AppDelegate.internalDisplayOrder != i {      // for not internal display

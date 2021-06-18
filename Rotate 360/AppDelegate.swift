@@ -54,8 +54,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let event = NSApp.currentEvent!
 
         if event.type == NSEvent.EventType.leftMouseUp {
-//            print("leftMouseUp in statusBarButtonClicked")
-            
             AppDelegate.internalDisplayOrder = Int(findInternalDisplay())
             customView.drawKey = false          // to excute draw function in CustomView Class
             
@@ -68,11 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem.menu = nil
             
             CustomView.selectedScreen = -1
-            
-//            print(AppDelegate.internalDisplayOrder!)
-//            print(infoDisplays())
-        } else {
-//            print("rightMouseUp in statusBarButtonClicked")
         }
     }
     
