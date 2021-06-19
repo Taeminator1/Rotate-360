@@ -29,9 +29,7 @@ class CustomView: NSView {
         if drawKey == false {
             drawKey = true
 
-            for i in 0 ..< buttons.count {
-                buttons[i].removeFromSuperview()
-            }
+            buttons.forEach { $0.removeFromSuperview() }
             buttons.removeAll()
 
             makeCustomButtons()
@@ -40,8 +38,8 @@ class CustomView: NSView {
     
     func makeCustomButtons() {
         // View에 그릴 screen이 차지할 공간 결정
-        var viewWidth: CGFloat = self.bounds.width - margin             // 380 - 20 = 360
-        var viewHeight: CGFloat = self.bounds.height - margin           // 180 - 20 = 160
+        var viewWidth: CGFloat = self.bounds.width - margin
+        var viewHeight: CGFloat = self.bounds.height - margin
         
         let region = Region()
         let screens: [NSScreen] = NSScreen.screens
@@ -54,12 +52,18 @@ class CustomView: NSView {
         
         // View에 실제로 버튼 그리기
         for i in 0 ..< screens.count {
-            let x = (screens[i].frame.minX - region.minX) / scale + (viewWidth - (region.maxX - region.minX) / scale) / 2
-            let y = (screens[i].frame.minY - region.minY) / scale + (viewHeight - (region.maxY - region.minY) / scale) / 2
-            let w = screens[i].frame.size.width/scale
-            let h = screens[i].frame.size.height/scale
+            let hMargin = (viewWidth - region.width / scale) / 2
+            let vMargin = (viewHeight - region.height / scale) / 2
             
-            let button = NSButton(frame: NSRect(x: x, y: y, width: w, height: h))
+            // 각 스크린의 꼭지점이 region에 잘 배치되기 위해 이동해야할 거리
+            let x = (screens[i].frame.minX - region.minX) / scale + hMargin
+            let y = (screens[i].frame.minY - region.minY) / scale + vMargin
+            
+            // 각 스크린의 너비와 높이
+            let width = screens[i].frame.size.width / scale
+            let height = screens[i].frame.size.height / scale
+            
+            let button = NSButton(frame: NSRect(x: x, y: y, width: width, height: height))
             button.bezelStyle = NSButton.BezelStyle.smallSquare
             
             if AppDelegate.internalDisplayOrder != i {      // for not internal display
