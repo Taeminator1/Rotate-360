@@ -8,20 +8,24 @@
 
 import Foundation
 
-class Screen {
+enum Orientaion {
+    case CW         // Clockwise
+    case CCW        // Counter Clockwise
+}
+
+struct Screen {
     static var displayPhase: Int = 0
     static var targetDisplay: CGDirectDisplayID = 0
     static var options: IOOptionBits = 0
     
-    static func rotateToSpecificOrientation(targetDisplayUnit: Int, Orientation: Int) {
+    static func rotateToSpecificOrientation(targetDisplayUnit: Int, _ Orientation: Orientaion) {
         targetDisplay = nonInternalID(UInt32(targetDisplayUnit))
 
-//        print("Screen Phase: \(screenPhase)º")
-        if Orientation == 1 {           // CW
+        if Orientation == .CW {
             displayPhase = Int(CGDisplayRotation(targetDisplay))
             options = angle2options(displayPhase == 0 ? 270 : displayPhase - 90)
         }
-        else if Orientation == 2 {      // CCW
+        else if Orientation == .CCW {
             displayPhase = Int(CGDisplayRotation(targetDisplay))
             options = angle2options(displayPhase == 270 ? 0 : displayPhase + 90)
         }

@@ -17,8 +17,7 @@
             <connections>
                 <outlet property="customView" destination="eYm-eY-Ydg" id="g6K-nI-wxc"/>
                 <outlet property="menu" destination="hBL-aL-l1D" id="fqG-Qc-GCm"/>
-                <outlet property="openAtLoginMenuItem" destination="Udh-IQ-PAE" id="bAu-2z-y7f"/>
-                <outlet property="openAtLoginState" destination="Udh-IQ-PAE" id="5O6-WR-QvV"/>
+                <outlet property="openAtLogin" destination="Udh-IQ-PAE" id="sxY-Ke-QFv"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>

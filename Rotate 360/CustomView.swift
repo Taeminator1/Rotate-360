@@ -66,7 +66,11 @@ class CustomView: NSView {
             let button = NSButton(frame: NSRect(x: x, y: y, width: width, height: height))
             button.bezelStyle = NSButton.BezelStyle.smallSquare
             
-            if AppDelegate.internalDisplayOrder != i {      // for not internal display
+            if AppDelegate.internalDisplayOrder == i {      // 내부 화면인 경우
+                button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
+                button.isEnabled = false
+            }
+            else {                                          // 연결된 화면인 경우
                 if mouseLocation.x >= screens[i].frame.minX && mouseLocation.x <= screens[i].frame.maxX && mouseLocation.y >= screens[i].frame.minY && mouseLocation.y <= screens[i].frame.maxY {
                     button.image = NSImage.swatchWithColor(color: NSColor.enabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
                     
@@ -75,10 +79,6 @@ class CustomView: NSView {
                 else {
                     button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
                 }
-            }
-            else {                                          // for internal display
-                button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
-                button.isEnabled = false
             }
 
             addSubview(button)
@@ -89,11 +89,7 @@ class CustomView: NSView {
     }
 
     @objc func buttonClicked(_ sender: NSButton) {
-        
-        for i in 0 ..< buttons.count {
-            buttons[i].state = NSControl.StateValue.off
-        }
-        
+        buttons.forEach { $0.state = NSControl.StateValue.off }
         sender.state = NSControl.StateValue.on
         
         // change image of button whenever selecting a button

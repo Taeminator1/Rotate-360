@@ -17,7 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let helperBundleName = "com.Taeminator.Rotate-360-Launch"           // for Opeing at Login
     var foundHelper: Bool = true                                        // for Opeing at Login
     
-    @IBOutlet weak var openAtLoginMenuItem: NSMenuItem!
+//    @IBOutlet weak var openAtLogin: NSMenuItem!
+    @IBOutlet weak var openAtLogin: NSMenuItem!
     
     static var internalDisplayOrder: Int!
     
@@ -38,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         foundHelper = NSWorkspace.shared.runningApplications.contains {
             $0.bundleIdentifier == helperBundleName
         }
-        openAtLoginMenuItem.state = foundHelper ? .on : .off
+        openAtLogin.state = foundHelper ? .on : .off
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -70,33 +71,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func rotateScreenClockwiseClicked(_ sender: Any) {
-        // Orientation: 1 -> Rotate CW
-        if CustomView.selectedScreen == -1 {
+        guard CustomView.selectedScreen != -1 else {
+            return
         }
-        else {
-            Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, Orientation: 1)
-        }
+        
+        Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, .CW)
     }
     
     @IBAction func rotateScreenCounterclockwiseClicked(_ sender: Any) {
-        // Orientation: 1 -> Rotate CCW
-        if CustomView.selectedScreen == -1 {
+        guard CustomView.selectedScreen != -1 else {
+            return
         }
-        else {
-            Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, Orientation: 2)
-        }
+        
+        Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, .CCW)
     }
     
     @IBAction func openAtLoginClicked(_ sender: Any) {
-        if openAtLoginMenuItem.state == .on {
-            openAtLoginMenuItem.state = .off
-        }
-        else {
-            openAtLoginMenuItem.state = .on
-        }
-        
-        SMLoginItemSetEnabled(helperBundleName as CFString, openAtLoginMenuItem.state == .on)
+        openAtLogin.state = openAtLogin.state == .on ? .off : .on
+        SMLoginItemSetEnabled(helperBundleName as CFString, openAtLogin.state == .on)
     }
+    
     @IBAction func quitClicked(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }
