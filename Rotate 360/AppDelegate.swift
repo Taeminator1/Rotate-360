@@ -17,15 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let helperBundleName = "com.Taeminator.Rotate-360-Launch"           // for Opeing at Login
     var foundHelper: Bool = true                                        // for Opeing at Login
     
-//    @IBOutlet weak var openAtLogin: NSMenuItem!
     @IBOutlet weak var openAtLogin: NSMenuItem!
     
     static var internalDisplayOrder: Int!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-//        print("applicationDidFinishLauncing in AppDelegate")
-        
         if let button = statusItem.button {
             if let icon = NSImage(named: "menubar_icon") {
                 icon.isTemplate = true
@@ -36,14 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // Open at Login
-        foundHelper = NSWorkspace.shared.runningApplications.contains {
-            $0.bundleIdentifier == helperBundleName
-        }
+        foundHelper = NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier == helperBundleName }
         openAtLogin.state = foundHelper ? .on : .off
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
 
     @IBOutlet weak var menu: NSMenu!
@@ -71,19 +62,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func rotateScreenClockwiseClicked(_ sender: Any) {
-        guard CustomView.selectedScreen != -1 else {
-            return
+        if CustomView.selectedScreen != -1 {
+            Screen.rotateByOrientaion(targetDisplayUnit: CustomView.selectedScreen, .CW)
         }
-        
-        Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, .CW)
     }
     
     @IBAction func rotateScreenCounterclockwiseClicked(_ sender: Any) {
-        guard CustomView.selectedScreen != -1 else {
-            return
+        if CustomView.selectedScreen != -1 {
+            Screen.rotateByOrientaion(targetDisplayUnit: CustomView.selectedScreen, .CCW)
         }
-        
-        Screen.rotateToSpecificOrientation(targetDisplayUnit: CustomView.selectedScreen, .CCW)
     }
     
     @IBAction func openAtLoginClicked(_ sender: Any) {
@@ -94,6 +81,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func quitClicked(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }
-    
 }
 

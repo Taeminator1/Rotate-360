@@ -18,7 +18,7 @@ struct Screen {
     static var targetDisplay: CGDirectDisplayID = 0
     static var options: IOOptionBits = 0
     
-    static func rotateToSpecificOrientation(targetDisplayUnit: Int, _ Orientation: Orientaion) {
+    static func rotateByOrientaion(targetDisplayUnit: Int, _ Orientation: Orientaion) {
         targetDisplay = nonInternalID(UInt32(targetDisplayUnit))
 
         if Orientation == .CW {

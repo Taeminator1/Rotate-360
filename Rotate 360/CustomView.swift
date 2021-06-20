@@ -74,8 +74,8 @@ extension CustomView {
         
         // draw the button in the active area
         for i in 0 ..< screens.count {
-            let hMargin = (viewWidth - region.width / scale) / 2            // 2 is for each side
-            let vMargin = (viewHeight - region.height / scale) / 2
+            let hMargin = (viewWidth - (region.maxX - region.minX) / scale) / 2            // 2 is for each side
+            let vMargin = (viewHeight - (region.maxY - region.minY) / scale) / 2
             
             // distance to move to place the button in the region
             let x = (screens[i].frame.minX - region.minX) / scale + hMargin
