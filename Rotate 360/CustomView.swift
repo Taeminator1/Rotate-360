@@ -32,59 +32,7 @@ class CustomView: NSView {
             buttons.forEach { $0.removeFromSuperview() }
             buttons.removeAll()
 
-            makeCustomButtons()
-        }
-    }
-    
-    func makeCustomButtons() {
-        // View에 그릴 screen이 차지할 공간 결정
-        var viewWidth: CGFloat = self.bounds.width - margin
-        var viewHeight: CGFloat = self.bounds.height - margin
-        
-        let region = Region()
-        let screens: [NSScreen] = NSScreen.screens
-        
-        screens.forEach { region.setProperties(screen: $0) }
-        
-        let scale = max(region.width / viewWidth, region.height / viewHeight)
-        viewWidth += margin
-        viewHeight += margin
-        
-        // View에 실제로 버튼 그리기
-        for i in 0 ..< screens.count {
-            let hMargin = (viewWidth - region.width / scale) / 2
-            let vMargin = (viewHeight - region.height / scale) / 2
-            
-            // 각 스크린의 꼭지점이 region에 잘 배치되기 위해 이동해야할 거리
-            let x = (screens[i].frame.minX - region.minX) / scale + hMargin
-            let y = (screens[i].frame.minY - region.minY) / scale + vMargin
-            
-            // 각 스크린의 너비와 높이
-            let width = screens[i].frame.size.width / scale
-            let height = screens[i].frame.size.height / scale
-            
-            let button = NSButton(frame: NSRect(x: x, y: y, width: width, height: height))
-            button.bezelStyle = NSButton.BezelStyle.smallSquare
-            
-            if AppDelegate.internalDisplayOrder == i {      // 내부 화면인 경우
-                button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
-                button.isEnabled = false
-            }
-            else {                                          // 연결된 화면인 경우
-                if mouseLocation.x >= screens[i].frame.minX && mouseLocation.x <= screens[i].frame.maxX && mouseLocation.y >= screens[i].frame.minY && mouseLocation.y <= screens[i].frame.maxY {
-                    button.image = NSImage.swatchWithColor(color: NSColor.enabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
-                    
-                    CustomView.selectedScreen = i
-                }
-                else {
-                    button.image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
-                }
-            }
-
-            addSubview(button)
-            button.target = self
-            button.action = #selector(buttonClicked)
-            buttons.append(button)
+            drawCustomButtons()
         }
     }
 
@@ -97,14 +45,72 @@ class CustomView: NSView {
             // don't need to care about internal display
             if AppDelegate.internalDisplayOrder != i {
                 if buttons[i].state == NSControl.StateValue.on {
-                    buttons[i].image = NSImage.swatchWithColor(color: NSColor.enabledScreen, size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
+                    buttons[i].image = makeButtonImage(buttons[i], .enabledScreen)
                     
                     CustomView.selectedScreen = i
                 }
                 else {
-                    buttons[i].image = NSImage.swatchWithColor(color: NSColor.disabledScreen, size: NSMakeSize(buttons[i].frame.size.width, buttons[i].frame.size.height))
+                    buttons[i].image = makeButtonImage(buttons[i], .disabledScreen)
                 }
             }
         }
+    }
+}
+
+extension CustomView {
+    func drawCustomButtons() {
+        // decide active area of the CustomView
+        var viewWidth: CGFloat = self.bounds.width - margin
+        var viewHeight: CGFloat = self.bounds.height - margin
+        
+        let region = Region()
+        let screens: [NSScreen] = NSScreen.screens
+        
+        screens.forEach { region.setProperties(screen: $0) }
+        
+        let scale = max(region.width / viewWidth, region.height / viewHeight)
+        viewWidth += margin
+        viewHeight += margin
+        
+        // draw the button in the active area
+        for i in 0 ..< screens.count {
+            let hMargin = (viewWidth - region.width / scale) / 2            // 2 is for each side
+            let vMargin = (viewHeight - region.height / scale) / 2
+            
+            // distance to move to place the button in the region
+            let x = (screens[i].frame.minX - region.minX) / scale + hMargin
+            let y = (screens[i].frame.minY - region.minY) / scale + vMargin
+            
+            // Each screen's width and height
+            let width = screens[i].frame.size.width / scale
+            let height = screens[i].frame.size.height / scale
+            
+            let button = NSButton(frame: NSRect(x: x, y: y, width: width, height: height))
+            button.bezelStyle = NSButton.BezelStyle.smallSquare
+            
+            if AppDelegate.internalDisplayOrder == i {      // 내부 화면인 경우
+                button.image = makeButtonImage(button, .disabledScreen)
+                button.isEnabled = false
+            }
+            else {                                          // 연결된 화면인 경우
+                if mouseLocation.isInTheScreen(screens[i]) {
+                    button.image = makeButtonImage(button, .enabledScreen)
+                    
+                    CustomView.selectedScreen = i
+                }
+                else {
+                    button.image = makeButtonImage(button, .disabledScreen)
+                }
+            }
+
+            addSubview(button)
+            button.target = self
+            button.action = #selector(buttonClicked)
+            buttons.append(button)
+        }
+    }
+    
+    func makeButtonImage(_ button: NSButton, _ color: NSColor) -> NSImage {
+        return NSImage.swatchWithColor(color: color, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
     }
 }
