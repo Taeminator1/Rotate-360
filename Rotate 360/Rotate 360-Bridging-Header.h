@@ -255,6 +255,7 @@ CG_EXTERN io_service_t duplicatedCGDisplayIOServicePort(CGDirectDisplayID displa
 }
 
 
+// MARK: -
 int displayUnitNumberOfMouseCursorPosition(void)
 {
     CGDisplayErr      dErr;
@@ -273,7 +274,7 @@ int displayUnitNumberOfMouseCursorPosition(void)
     dErr = CGGetOnlineDisplayList(maxDisplays, onlineDisplays, &displayCount);
     if (dErr != kCGErrorSuccess) {
 //        fprintf(stderr, "CGGetOnlineDisplayList: error %d.\n", dErr);
-//        exit(1);
+        exit(1);
     }
 
 //    printf("#  Display_ID    Resolution  ____Display_Bounds____  Rotation\n");
@@ -308,7 +309,7 @@ int screenNumToDisplayUnitNumber(int screenNum)
     dErr = CGGetOnlineDisplayList(maxDisplays, onlineDisplays, &displayCount);
     if (dErr != kCGErrorSuccess) {
 //        fprintf(stderr, "CGGetOnlineDisplayList: error %d.\n", dErr);
-//        exit(1);
+        exit(1);
     }
     
     return CGDisplayUnitNumber(onlineDisplays[screenNum]);
@@ -330,7 +331,7 @@ int findInternalDisplay(void)
     dErr = CGGetOnlineDisplayList(maxDisplays, onlineDisplays, &displayCount);
     if (dErr != kCGErrorSuccess) {
 //        fprintf(stderr, "CGGetOnlineDisplayList: error %d.\n", dErr);
-//        exit(1);
+        exit(1);
     }
 
     for (i = 0; i < displayCount; i++) {

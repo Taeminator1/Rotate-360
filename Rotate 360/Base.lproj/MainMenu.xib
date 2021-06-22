@@ -23,14 +23,14 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="hBL-aL-l1D">
             <items>
-                <menuItem title="Rotate Screen CW" id="X3L-Dg-MFP">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Rotate Screen CW" keyEquivalent="x" id="X3L-Dg-MFP">
+                    <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                     <connections>
                         <action selector="rotateScreenClockwiseClicked:" target="0MQ-o0-XMU" id="t8l-kl-hJP"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Rotate Screen CCW" id="HGT-M3-AkY">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Rotate Screen CCW" keyEquivalent="z" id="HGT-M3-AkY">
+                    <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                     <connections>
                         <action selector="rotateScreenCounterclockwiseClicked:" target="0MQ-o0-XMU" id="9Gn-9o-CZL"/>
                     </connections>
