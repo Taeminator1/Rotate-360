@@ -8,6 +8,7 @@
 
 import Cocoa
 import ServiceManagement
+import HotKey
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,10 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let helperBundleName = "com.Taeminator.Rotate-360-Launch"           // for Opeing at Login
     var foundHelper: Bool = true                                        // for Opeing at Login
-    
     @IBOutlet weak var openAtLogin: NSMenuItem!
     
     static var internalDisplayOrder: Int!
+    
+    let hotKey: HotKey = HotKey(keyCombo: KeyCombo(key: .r, modifiers: [.command, .option]))
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -30,6 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             button.action = #selector(self.statusBarButtonClicked(sender:))
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
+        }
+        
+        hotKey.keyDownHandler = {
+            print(NSEvent.mouseLocation)
         }
         
         // Open at Login
@@ -44,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func statusBarButtonClicked(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
-
+        
         if event.type == NSEvent.EventType.leftMouseUp {
             AppDelegate.internalDisplayOrder = Int(findInternalDisplay())
             customView.drawKey = false          // to excute draw function in CustomView Class

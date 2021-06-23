@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3416DD6D267F23B0000E393D /* NSPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416DD6C267F23B0000E393D /* NSPointExtension.swift */; };
+		346B30112683639700F62C5C /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 346B30102683639700F62C5C /* HotKey */; };
 		3475F377249A3D66007AABD1 /* Rotate 360 Launch.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34D55B98249A37DB0086E8D9 /* Rotate 360 Launch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3483792B2498CE360052C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483792A2498CE360052C2B5 /* AppDelegate.swift */; };
 		3483792F2498CE380052C2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3483792E2498CE380052C2B5 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				346B30112683639700F62C5C /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,16 +100,16 @@
 		348379292498CE360052C2B5 /* Rotate 360 */ = {
 			isa = PBXGroup;
 			children = (
-				34A45833267B8BC100F72C6C /* Extension */,
 				34ABFEEB249B7ECC0013C42C /* MainMenu.xib */,
 				3483792A2498CE360052C2B5 /* AppDelegate.swift */,
 				348379412498F1570052C2B5 /* Screen.swift */,
 				34A45838267B8CB900F72C6C /* Region.swift */,
 				3483793E2498E8760052C2B5 /* CustomView.swift */,
-				3483792E2498CE380052C2B5 /* Assets.xcassets */,
 				348379332498CE380052C2B5 /* Info.plist */,
 				348379342498CE380052C2B5 /* Rotate_360.entitlements */,
 				348379442498F37D0052C2B5 /* Rotate 360-Bridging-Header.h */,
+				3483792E2498CE380052C2B5 /* Assets.xcassets */,
+				34A45833267B8BC100F72C6C /* Extension */,
 			);
 			path = "Rotate 360";
 			sourceTree = "<group>";
@@ -151,6 +153,9 @@
 			dependencies = (
 			);
 			name = "Rotate 360";
+			packageProductDependencies = (
+				346B30102683639700F62C5C /* HotKey */,
+			);
 			productName = "Rotate 360";
 			productReference = 348379272498CE360052C2B5 /* Rotate 360.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +207,9 @@
 				ja,
 			);
 			mainGroup = 3483791E2498CE360052C2B5;
+			packageReferences = (
+				346B300F2683639700F62C5C /* XCRemoteSwiftPackageReference "HotKey" */,
+			);
 			productRefGroup = 348379282498CE360052C2B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -534,6 +542,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		346B300F2683639700F62C5C /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		346B30102683639700F62C5C /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 346B300F2683639700F62C5C /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3483791F2498CE360052C2B5 /* Project object */;
 }
