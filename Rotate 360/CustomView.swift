@@ -72,11 +72,12 @@ extension CustomView {
         viewWidth += margin
         viewHeight += margin
         
+        // Margins of horizon and vertical in the CustomView
+        let hMargin = (viewWidth - (region.maxX - region.minX) / scale) / 2     // 2 is for each side
+        let vMargin = (viewHeight - (region.maxY - region.minY) / scale) / 2
+        
         // draw the button in the active area
         for i in 0 ..< screens.count {
-            let hMargin = (viewWidth - (region.maxX - region.minX) / scale) / 2            // 2 is for each side
-            let vMargin = (viewHeight - (region.maxY - region.minY) / scale) / 2
-            
             // distance to move to place the button in the region
             let x = (screens[i].frame.minX - region.minX) / scale + hMargin
             let y = (screens[i].frame.minY - region.minY) / scale + vMargin
@@ -88,14 +89,14 @@ extension CustomView {
             let button = NSButton(frame: NSRect(x: x, y: y, width: width, height: height))
             button.bezelStyle = NSButton.BezelStyle.smallSquare
             
-            if AppDelegate.internalDisplayOrder == i {      // 내부 화면인 경우
+            if AppDelegate.internalDisplayOrder == i {      // internal display
                 button.image = makeButtonImage(button, .disabledScreen)
                 button.isEnabled = false
             }
-            else {                                          // 연결된 화면인 경우
+            else {                                          // auxiliary display
                 if mouseLocation.isInTheScreen(screens[i]) {
                     button.image = makeButtonImage(button, .enabledScreen)
-                    
+
                     CustomView.selectedScreen = i
                 }
                 else {

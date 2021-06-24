@@ -20,8 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var openAtLogin: NSMenuItem!
     
     static var internalDisplayOrder: Int!
-    
-    let hotKey: HotKey = HotKey(keyCombo: KeyCombo(key: .r, modifiers: [.command, .option]))
+    static var rotatingHotKeys: [Orientaion: HotKey] = [:]
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -34,8 +33,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
         }
         
-        hotKey.keyDownHandler = {
-            print(NSEvent.mouseLocation)
+        // set hotkey
+        AppDelegate.rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .x, modifiers: [.control, .option, .command])), forKey: .CW)
+        AppDelegate.rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .z, modifiers: [.control, .option, .command])), forKey: .CCW)
+        
+        // set handler of each hotkey
+        AppDelegate.rotatingHotKeys.forEach { hotKey in
+            hotKey.value.keyDownHandler = {
+                AppDelegate.internalDisplayOrder = Int(findInternalDisplay())
+
+                let mouseLocation: NSPoint = NSEvent.mouseLocation
+                let screens: [NSScreen] = NSScreen.screens
+
+                for i in 0 ..< screens.count {      // find display where the mouse in except internal display
+                    if AppDelegate.internalDisplayOrder != i && mouseLocation.isInTheScreen(screens[i]) {
+                        Screen.rotateByOrientaion(targetDisplayUnit: i, hotKey.key)
+                    }
+                }
+            }
         }
         
         // Open at Login

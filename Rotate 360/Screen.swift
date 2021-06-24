@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum Orientaion {
-    case CW         // Clockwise
-    case CCW        // Counter Clockwise
+enum Orientaion: Int {
+    case CW = 0         // Clockwise
+    case CCW = 1        // Counter Clockwise
 }
 
 struct Screen {

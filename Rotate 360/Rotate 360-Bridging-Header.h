@@ -316,6 +316,9 @@ int screenNumToDisplayUnitNumber(int screenNum)
 }
 
 
+// Return value of main display is 0.
+// If it has internal display, return value is 0 or more than 0.
+// Otherwise, return value is -1
 int findInternalDisplay(void)
 {
     CGDisplayErr      dErr;
