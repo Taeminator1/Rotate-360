@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3416DD6D267F23B0000E393D /* NSPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416DD6C267F23B0000E393D /* NSPointExtension.swift */; };
+		344BCED226C29C15006D221D /* RactangleSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BCED126C29C15006D221D /* RactangleSize.swift */; };
 		346B30112683639700F62C5C /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 346B30102683639700F62C5C /* HotKey */; };
 		3475F377249A3D66007AABD1 /* Rotate 360 Launch.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34D55B98249A37DB0086E8D9 /* Rotate 360 Launch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3483792B2498CE360052C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483792A2498CE360052C2B5 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		3416DD6C267F23B0000E393D /* NSPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPointExtension.swift; sourceTree = "<group>"; };
+		344BCED126C29C15006D221D /* RactangleSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RactangleSize.swift; sourceTree = "<group>"; };
 		348379272498CE360052C2B5 /* Rotate 360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotate 360.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3483792A2498CE360052C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3483792E2498CE380052C2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,9 +104,10 @@
 			children = (
 				34ABFEEB249B7ECC0013C42C /* MainMenu.xib */,
 				3483792A2498CE360052C2B5 /* AppDelegate.swift */,
+				3483793E2498E8760052C2B5 /* CustomView.swift */,
 				348379412498F1570052C2B5 /* Screen.swift */,
 				34A45838267B8CB900F72C6C /* Region.swift */,
-				3483793E2498E8760052C2B5 /* CustomView.swift */,
+				344BCED126C29C15006D221D /* RactangleSize.swift */,
 				348379332498CE380052C2B5 /* Info.plist */,
 				348379342498CE380052C2B5 /* Rotate_360.entitlements */,
 				348379442498F37D0052C2B5 /* Rotate 360-Bridging-Header.h */,
@@ -248,6 +251,7 @@
 			files = (
 				3416DD6D267F23B0000E393D /* NSPointExtension.swift in Sources */,
 				3483792B2498CE360052C2B5 /* AppDelegate.swift in Sources */,
+				344BCED226C29C15006D221D /* RactangleSize.swift in Sources */,
 				348379422498F1570052C2B5 /* Screen.swift in Sources */,
 				34A45835267B8BD900F72C6C /* NSColorExtension.swift in Sources */,
 				34A45839267B8CB900F72C6C /* Region.swift in Sources */,

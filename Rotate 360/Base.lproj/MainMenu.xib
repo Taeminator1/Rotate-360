@@ -38,9 +38,6 @@
                 <menuItem isSeparatorItem="YES" id="Nqq-GT-W3n"/>
                 <menuItem title="CustomView" id="5at-fu-1VY">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="customViewClicked:" target="0MQ-o0-XMU" id="InL-DW-qen"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="5lR-e6-Qkh"/>
                 <menuItem title="Open at Login" id="Udh-IQ-PAE">

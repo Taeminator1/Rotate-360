@@ -6,6 +6,10 @@
 //  Copyright © 2020 Taemin Yun. All rights reserved.
 //
 
+//  View to draw buttons representing screens connected with a computer.
+//  Clicking the button of the View makes the screen selected to perform rotating.
+//  However the button representing internal screen cannot be selected.
+
 import Cocoa
 
 @IBDesignable
@@ -20,7 +24,6 @@ class CustomView: NSView {
 
     required init(coder: NSCoder) {
         super.init(coder: coder)!
-//        print("required init")
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -40,17 +43,16 @@ class CustomView: NSView {
         buttons.forEach { $0.state = NSControl.StateValue.off }
         sender.state = NSControl.StateValue.on
         
-        // change image of button whenever selecting a button
-        for i in 0 ..< buttons.count {
-            // don't need to care about internal display
+        // Change image of button whenever selecting a button.
+        for (i, button) in buttons.enumerated() {
+            // Don't need to care about internal display.
             if AppDelegate.internalDisplayOrder != i {
-                if buttons[i].state == NSControl.StateValue.on {
-                    buttons[i].image = makeButtonImage(buttons[i], .enabledScreen)
-                    
+                if button.state == NSControl.StateValue.on {
+                    button.image = makeButtonImage(button, .enabledScreen)
                     CustomView.selectedScreen = i
                 }
                 else {
-                    buttons[i].image = makeButtonImage(buttons[i], .disabledScreen)
+                    button.image = makeButtonImage(button, .disabledScreen)
                 }
             }
         }
@@ -59,44 +61,40 @@ class CustomView: NSView {
 
 extension CustomView {
     func drawCustomButtons() {
-        // decide active area of the CustomView
-        var viewWidth: CGFloat = self.bounds.width - margin
-        var viewHeight: CGFloat = self.bounds.height - margin
+        // Decide active area of the CustomView.
+        var viewSize = RectangleSize(self.bounds.width - margin, self.bounds.height - margin)
         
         let region = Region()
         let screens: [NSScreen] = NSScreen.screens
         
         screens.forEach { region.setProperties(screen: $0) }
         
-        let scale = max(region.width / viewWidth, region.height / viewHeight)
-        viewWidth += margin
-        viewHeight += margin
+        let scale = max(region.width / viewSize.width, region.height / viewSize.height)
+        viewSize = RectangleSize(self.bounds.width, self.bounds.height)
         
         // Margins of horizon and vertical in the CustomView
-        let hMargin = (viewWidth - (region.maxX - region.minX) / scale) / 2     // 2 is for each side
-        let vMargin = (viewHeight - (region.maxY - region.minY) / scale) / 2
+        let hMargin = (viewSize.width - region.gapX / scale) / 2     // 2 is for each side
+        let vMargin = (viewSize.height - region.gapY / scale) / 2
         
         // draw the button in the active area
-        for i in 0 ..< screens.count {
-            // distance to move to place the button in the region
-            let x = (screens[i].frame.minX - region.minX) / scale + hMargin
-            let y = (screens[i].frame.minY - region.minY) / scale + vMargin
+        for (i, screen) in screens.enumerated() {
+            // Distance to move to place the button in the region
+            let x = (screen.frame.minX - region.minX) / scale + hMargin
+            let y = (screen.frame.minY - region.minY) / scale + vMargin
             
             // Each screen's width and height
-            let width = screens[i].frame.size.width / scale
-            let height = screens[i].frame.size.height / scale
+            let screenSize = RectangleSize(screen.frame.size.width / scale, screen.frame.size.height / scale)
             
-            let button = NSButton(frame: NSRect(x: x, y: y, width: width, height: height))
+            let button = NSButton(frame: NSRect(x: x, y: y, width: screenSize.width, height: screenSize.height))
             button.bezelStyle = NSButton.BezelStyle.smallSquare
             
-            if AppDelegate.internalDisplayOrder == i {      // internal display
+            if AppDelegate.internalDisplayOrder == i {      // Internal display
                 button.image = makeButtonImage(button, .disabledScreen)
                 button.isEnabled = false
             }
-            else {                                          // auxiliary display
-                if mouseLocation.isInTheScreen(screens[i]) {
+            else {                                          // Non Iternal display
+                if mouseLocation.isInTheScreen(screen) {
                     button.image = makeButtonImage(button, .enabledScreen)
-
                     CustomView.selectedScreen = i
                 }
                 else {

@@ -6,6 +6,9 @@
 //  Copyright © 2020 Taemin Yun. All rights reserved.
 //
 
+//  Represent screen connected with computer.
+//  This Struct has static properties and methods to access anywhere in the other class.
+
 import Foundation
 
 enum Orientaion: Int {

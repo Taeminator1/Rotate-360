@@ -6,6 +6,12 @@
 //  Copyright © 2020 Taemin Yun. All rights reserved.
 //
 
+//  Initialize for the Application:
+//  - Status item for menu
+//  - Hotkey
+//  - Open at Login
+//  - Buttons in menubar, including initialization of CustomView
+
 import Cocoa
 import ServiceManagement
 import HotKey
@@ -13,32 +19,37 @@ import HotKey
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    
-    let helperBundleName = "com.Taeminator.Rotate-360-Launch"           // for Opeing at Login
-    var foundHelper: Bool = true                                        // for Opeing at Login
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+
+    // For Open at Login
+    private let helperBundleName = "com.Taeminator.Rotate-360-Launch"
+    private var foundHelper: Bool = true
     @IBOutlet weak var openAtLogin: NSMenuItem!
     
+    private var rotatingHotKeys: [Orientaion: HotKey] = [:]
+    
     static var internalDisplayOrder: Int!
-    static var rotatingHotKeys: [Orientaion: HotKey] = [:]
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        // MARK:- Create status item for menu
         if let button = statusItem.button {
             if let icon = NSImage(named: "menubar_icon") {
                 icon.isTemplate = true
                 button.image = icon
             }
-            button.action = #selector(self.statusBarButtonClicked(sender:))
+            button.action = #selector(self.statusItemButtonClicked(sender:))
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
         }
         
-        // set hotkey
-        AppDelegate.rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .x, modifiers: [.control, .option, .command])), forKey: .CW)
-        AppDelegate.rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .z, modifiers: [.control, .option, .command])), forKey: .CCW)
+        // MARK:- Create hotkey
+        // Set keys for hotkeys
+        rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .x, modifiers: [.control, .option, .command])), forKey: .CW)
+        rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .z, modifiers: [.control, .option, .command])), forKey: .CCW)
         
-        // set handler of each hotkey
-        AppDelegate.rotatingHotKeys.forEach { hotKey in
+        // Set handler of the each hotkey
+        rotatingHotKeys.forEach { hotKey in
             hotKey.value.keyDownHandler = {
                 AppDelegate.internalDisplayOrder = Int(findInternalDisplay())
 
@@ -53,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        // Open at Login
+        // MARK:- Set Open at Login
         foundHelper = NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier == helperBundleName }
         openAtLogin.state = foundHelper ? .on : .off
     }
@@ -61,9 +72,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var menu: NSMenu!
     @IBOutlet weak var customView: CustomView!
     
-    var menuItem: NSMenuItem!
+    private var menuItem: NSMenuItem!
     
-    @objc func statusBarButtonClicked(sender: NSStatusBarButton) {
+    @objc func statusItemButtonClicked(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
         
         if event.type == NSEvent.EventType.leftMouseUp {
@@ -75,7 +86,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             statusItem.menu = menu
             statusItem.button?.performClick(nil)
-            
             statusItem.menu = nil
             
             CustomView.selectedScreen = -1
