@@ -9,7 +9,9 @@
 import Cocoa
 
 extension NSImage {
-    static func swatchWithColor(color: NSColor, size: NSSize) -> NSImage {
+    
+    // Paint with color for NsImage.
+    static func paint(color: NSColor, size: NSSize) -> NSImage {
         let image = NSImage(size: size)
         
         image.lockFocus()

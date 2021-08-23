@@ -38,25 +38,6 @@ class CustomView: NSView {
             drawCustomButtons()
         }
     }
-
-    @objc func buttonClicked(_ sender: NSButton) {
-        buttons.forEach { $0.state = NSControl.StateValue.off }
-        sender.state = NSControl.StateValue.on
-        
-        // Change image of button whenever selecting a button.
-        for (i, button) in buttons.enumerated() {
-            // Don't need to care about internal display.
-            if AppDelegate.internalDisplayOrder != i {
-                if button.state == NSControl.StateValue.on {
-                    button.image = makeButtonImage(button, .enabledScreen)
-                    CustomView.selectedScreen = i
-                }
-                else {
-                    button.image = makeButtonImage(button, .disabledScreen)
-                }
-            }
-        }
-    }
 }
 
 extension CustomView {
@@ -110,6 +91,25 @@ extension CustomView {
     }
     
     func makeButtonImage(_ button: NSButton, _ color: NSColor) -> NSImage {
-        return NSImage.swatchWithColor(color: color, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
+        return NSImage.paint(color: color, size: NSMakeSize(button.frame.size.width, button.frame.size.height))
+    }
+    
+    @objc func buttonClicked(_ sender: NSButton) {
+        buttons.forEach { $0.state = NSControl.StateValue.off }
+        sender.state = NSControl.StateValue.on
+        
+        // Change image of button whenever selecting a button.
+        for (i, button) in buttons.enumerated() {
+            // Don't need to care about internal display.
+            if AppDelegate.internalDisplayOrder != i {
+                if button.state == NSControl.StateValue.on {
+                    button.image = makeButtonImage(button, .enabledScreen)
+                    CustomView.selectedScreen = i
+                }
+                else {
+                    button.image = makeButtonImage(button, .disabledScreen)
+                }
+            }
+        }
     }
 }

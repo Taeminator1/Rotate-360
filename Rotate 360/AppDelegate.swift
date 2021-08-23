@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        // MARK:- Create status item for menu
+        // MARK:- Set status item for menu
         if let button = statusItem.button {
             if let icon = NSImage(named: "menubar_icon") {
                 icon.isTemplate = true

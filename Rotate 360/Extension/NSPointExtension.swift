@@ -9,6 +9,7 @@
 import Cocoa
 
 extension NSPoint {
+    // Return to if mouse cursor is in the screen or not.
     func isInTheScreen(_ screen: NSScreen) -> Bool {
         return self.x >= screen.frame.minX && self.x <= screen.frame.maxX && self.y >= screen.frame.minY && self.y <= screen.frame.maxY
     }

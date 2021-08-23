@@ -6,6 +6,8 @@
 //  Copyright © 2021 Taemin Yun. All rights reserved.
 //
 
+//  Screen color in CustomView.
+
 import Cocoa
 
 extension NSColor {

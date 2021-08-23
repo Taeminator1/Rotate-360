@@ -1,5 +1,5 @@
 //
-//  RotateScreen.swift
+//  Screen.swift
 //  Rotate 360
 //
 //  Created by 윤태민 on 6/16/20.
@@ -32,8 +32,8 @@ struct Screen {
             displayPhase = Int(CGDisplayRotation(targetDisplay))
             options = angle2options(displayPhase == 270 ? 0 : displayPhase + 90)
         }
-        let td2: CGDirectDisplayID = cgIDfromU32(targetDisplay)
-        let service: io_service_t = duplicatedCGDisplayIOServicePort(td2)
+        let displayID: CGDirectDisplayID = cgIDfromU32(targetDisplay)
+        let service: io_service_t = duplicatedCGDisplayIOServicePort(displayID)
 
         IOServiceRequestProbe(service, options)
     }
