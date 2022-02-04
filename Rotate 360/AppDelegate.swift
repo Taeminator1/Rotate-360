@@ -9,10 +9,11 @@
 //  Initialize for the Application:
 //  - Status item for menu
 //  - Hotkey using SwiftPM
+//      - For moving cursor
+//      - For rotating screen
+
 //  - Open at Login
 //  - Buttons in menubar, including initialization of CustomView
-
-//
 
 import Cocoa
 import ServiceManagement
@@ -46,12 +47,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
         }
         
-        // MARK:- Create hotkeys for rotating
-        // Set hotkeys for rotating
+        // MARK:- Create hotkey for moving cursor
+        // Set hotkey for moving cursor
+        testHotKey = HotKey(keyCombo: KeyCombo(key: .p, modifiers: [.control, .option, .command]))
+        
+        // Set handler of the hotkey for moving cursor
+        testHotKey?.keyDownHandler = {
+            self.moveCursorClicked(NSButton.self)
+        }
+        
+        // MARK:- Create hotkeys for rotating screen
+        // Set hotkeys for rotating screen
         rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .rightBracket, modifiers: [.control, .option, .command])), forKey: .CW)
         rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .leftBracket, modifiers: [.control, .option, .command])), forKey: .CCW)
         
-        // Set handler of the each hotkey for rotating
+        // Set handler of the each hotkey for rotating screen
         rotatingHotKeyDics.forEach { hotKeyDic in
             hotKeyDic.value.keyDownHandler = {
                 AppDelegate.internalDisplayOrder = Int(findInternalDisplay())
@@ -65,15 +75,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                 }
             }
-        }
-        
-        // MARK:- Create hotkey for test
-        // Set hotkey for test
-        testHotKey = HotKey(keyCombo: KeyCombo(key: .p, modifiers: [.control, .option, .command]))
-        
-        // Set handler of the hotkey for test
-        testHotKey?.keyDownHandler = {
-            self.moveCursorClicked(NSButton.self)
         }
         
         // MARK:- Set Open at Login
