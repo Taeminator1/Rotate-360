@@ -8,9 +8,11 @@
 
 //  Initialize for the Application:
 //  - Status item for menu
-//  - Hotkey
+//  - Hotkey using SwiftPM
 //  - Open at Login
 //  - Buttons in menubar, including initialization of CustomView
+
+//
 
 import Cocoa
 import ServiceManagement
@@ -26,7 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var foundHelper: Bool = true
     @IBOutlet weak var openAtLogin: NSMenuItem!
     
-    private var rotatingHotKeys: [Orientaion: HotKey] = [:]
+    private var rotatingHotKeyDics: [Orientaion: HotKey] = [:]
+    private var testHotKey: HotKey?
     
     static var internalDisplayOrder: Int!
     
@@ -43,14 +46,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
         }
         
-        // MARK:- Create hotkey
-        // Set keys for hotkeys
-        rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .x, modifiers: [.control, .option, .command])), forKey: .CW)
-        rotatingHotKeys.updateValue(HotKey(keyCombo: KeyCombo(key: .z, modifiers: [.control, .option, .command])), forKey: .CCW)
+        // MARK:- Create hotkeys for rotating
+        // Set hotkeys for rotating
+        rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .rightBracket, modifiers: [.control, .option, .command])), forKey: .CW)
+        rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .leftBracket, modifiers: [.control, .option, .command])), forKey: .CCW)
         
-        // Set handler of the each hotkey
-        rotatingHotKeys.forEach { hotKey in
-            hotKey.value.keyDownHandler = {
+        // Set handler of the each hotkey for rotating
+        rotatingHotKeyDics.forEach { hotKeyDic in
+            hotKeyDic.value.keyDownHandler = {
                 AppDelegate.internalDisplayOrder = Int(findInternalDisplay())
 
                 let mouseLocation: NSPoint = NSEvent.mouseLocation
@@ -58,10 +61,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 for i in 0 ..< screens.count {      // find display where the mouse in except internal display
                     if AppDelegate.internalDisplayOrder != i && mouseLocation.isInTheScreen(screens[i]) {
-                        Screen.rotateByOrientaion(targetDisplayUnit: i, hotKey.key)
+                        Screen.rotateByOrientaion(targetDisplayUnit: i, hotKeyDic.key)
                     }
                 }
             }
+        }
+        
+        // MARK:- Create hotkey for test
+        // Set hotkey for test
+        testHotKey = HotKey(keyCombo: KeyCombo(key: .p, modifiers: [.control, .option, .command]))
+        
+        // Set handler of the hotkey for test
+        testHotKey?.keyDownHandler = {
+            self.moveCursorClicked(NSButton.self)
         }
         
         // MARK:- Set Open at Login
@@ -69,6 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openAtLogin.state = foundHelper ? .on : .off
     }
 
+    // MARK:- Menu Items
     @IBOutlet weak var menu: NSMenu!
     @IBOutlet weak var customView: CustomView!
     
@@ -90,6 +103,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             CustomView.selectedScreen = -1
         }
+    }
+    
+    @IBAction func moveCursorClicked(_ sender: Any) {
+        let mouseLocation: NSPoint = NSEvent.mouseLocation
+        let screens: [NSScreen] = NSScreen.screens
+        
+        var index: Int = 0
+        while !mouseLocation.isInTheScreen(screens[index]) { index += 1 }
+        index += 1
+        if index == screens.count { index = 0 }
+        
+        let screen = NSScreen.screens[index]
+        let minX: CGFloat = screen.frame.minX
+        let maxX: CGFloat = screen.frame.maxX
+        let minY: CGFloat = screen.frame.minY
+        let maxY: CGFloat = screen.frame.maxY
+        
+        CGDisplayMoveCursorToPoint(0, CGPoint(x: (minX + maxX) / 2, y: (minY + maxY) / 2))
     }
     
     @IBAction func rotateScreenClockwiseClicked(_ sender: Any) {
