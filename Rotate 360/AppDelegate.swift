@@ -11,9 +11,12 @@
 //  - Hotkey using SwiftPM
 //      - For moving cursor
 //      - For rotating screen
-
 //  - Open at Login
 //  - Buttons in menubar, including initialization of CustomView
+
+//  References
+//  - https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/QuartzDisplayServicesConceptual/Articles/MouseCursor.html
+//  - https://developer.apple.com/documentation/appkit/nscursor
 
 import Cocoa
 import ServiceManagement
@@ -33,6 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var testHotKey: HotKey?
     
     static var internalDisplayOrder: Int!
+    
+    private var cursor: NSCursor?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -109,19 +114,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func moveCursorClicked(_ sender: Any) {
         let mouseLocation: NSPoint = NSEvent.mouseLocation
         let screens: [NSScreen] = NSScreen.screens
-        
+
         var index: Int = 0
         while !mouseLocation.isInTheScreen(screens[index]) { index += 1 }
         index += 1
         if index == screens.count { index = 0 }
-        
+
         let screen = NSScreen.screens[index]
         let minX: CGFloat = screen.frame.minX
         let maxX: CGFloat = screen.frame.maxX
         let minY: CGFloat = screen.frame.minY
         let maxY: CGFloat = screen.frame.maxY
         
-        CGDisplayMoveCursorToPoint(0, CGPoint(x: (minX + maxX) / 2, y: (minY + maxY) / 2))
+        // NSScreen.frame.min_, NSScreen.frame.max_로 얻은 스크린의 좌표 -- 1번
+        // NSEvent.mouseLocation으로 얻은 스크린의 좌표 -- 2번
+        // 1번과 2번에서의 좌표가 서로 다름
+        // 1번 좌표
+        //  - [0, 0]: Main Screen의 좌/상
+        //  - x 좌표 증가 방향: 왼쪽에서 오른쪽
+        //  - y 좌표 증가 방향: 위쪽에서 아래쪽
+        // 2번 좌표
+        //  - [0, 0]: Main Screen의 좌/하
+        //  - x 좌표 증가 방향: 왼쪽에서 오른쪽
+        //  - y 좌표 증가 방향: 아래쪽에서 위쪽
+        // 각 스크린의 중앙점을 얻기 위해, x좌표는 1번 좌표의 평균값으로 구하면되만,
+        // y좌표는 Main Screen의 높이에서 1번 좌표의 평균값을 빼줘야 함.
+        CGDisplayMoveCursorToPoint(0, CGPoint(x: (maxX + minX) / 2, y: screens[0].frame.height - (maxY + minY) / 2))
     }
     
     @IBAction func rotateScreenClockwiseClicked(_ sender: Any) {
