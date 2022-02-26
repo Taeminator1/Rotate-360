@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // MARK:- Create hotkey for moving cursor
         // Set hotkey for moving cursor
-        testHotKey = HotKey(keyCombo: KeyCombo(key: .p, modifiers: [.control, .option, .command]))
+        testHotKey = HotKey(keyCombo: KeyCombo(key: .c, modifiers: [.control, .option, .command]))
         
         // Set handler of the hotkey for moving cursor
         testHotKey?.keyDownHandler = {
@@ -63,8 +63,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // MARK:- Create hotkeys for rotating screen
         // Set hotkeys for rotating screen
-        rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .rightBracket, modifiers: [.control, .option, .command])), forKey: .CW)
-        rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .leftBracket, modifiers: [.control, .option, .command])), forKey: .CCW)
+        rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .b, modifiers: [.control, .option, .command])), forKey: .CW)
+        rotatingHotKeyDics.updateValue(HotKey(keyCombo: KeyCombo(key: .v, modifiers: [.control, .option, .command])), forKey: .CCW)
         
         // Set handler of the each hotkey for rotating screen
         rotatingHotKeyDics.forEach { hotKeyDic in

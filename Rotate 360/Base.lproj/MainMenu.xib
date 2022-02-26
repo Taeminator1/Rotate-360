@@ -23,19 +23,19 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="hBL-aL-l1D">
             <items>
-                <menuItem title="Move Cursor" keyEquivalent="p" id="Taw-2z-8oC">
+                <menuItem title="Move Cursor" keyEquivalent="c" id="Taw-2z-8oC">
                     <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                     <connections>
                         <action selector="moveCursorClicked:" target="0MQ-o0-XMU" id="6RO-eZ-hhG"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Rotate Screen CW" keyEquivalent="[" id="X3L-Dg-MFP">
+                <menuItem title="Rotate Screen CW" keyEquivalent="v" id="X3L-Dg-MFP">
                     <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                     <connections>
                         <action selector="rotateScreenClockwiseClicked:" target="0MQ-o0-XMU" id="t8l-kl-hJP"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Rotate Screen CCW" keyEquivalent="]" id="HGT-M3-AkY">
+                <menuItem title="Rotate Screen CCW" keyEquivalent="b" id="HGT-M3-AkY">
                     <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                     <connections>
                         <action selector="rotateScreenCounterclockwiseClicked:" target="0MQ-o0-XMU" id="9Gn-9o-CZL"/>
