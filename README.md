@@ -7,7 +7,7 @@ Intel CPU를 사용하는 맥에 연결된 모니터를 손쉽게 회전시키�
 - [관련 링크](#관련-링크)
 
 # 개발 정보
-<img width="527" alt="2020 03" src="https://github.com/user-attachments/assets/671bc285-8470-4367-8a0a-53d14f8b13be">
+<img width="800" alt="2020 03" src="https://github.com/user-attachments/assets/671bc285-8470-4367-8a0a-53d14f8b13be">
 
 - 개발 환경: Xcode 12.4
 - 사용 언어: Swift 5, C
