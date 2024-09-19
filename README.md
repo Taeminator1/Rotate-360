@@ -31,5 +31,6 @@ Intel CPU를 사용하는 맥에 연결된 모니터를 손쉽게 회전시키�
 
 # 관련 링크
 - [앱스토어](https://apps.apple.com/kr/app/rotate-360/id1519786106?l=ko&mt=12)
-<img width="523" alt="No more complex notet" src="https://github.com/user-attachments/assets/f935274f-f896-4f2f-8a4d-fe02367cf9ed">
+<img width="800" alt="Pasted Graphic 8" src="https://github.com/user-attachments/assets/01a60cd9-df39-4370-8870-824231af1094">
+
 
